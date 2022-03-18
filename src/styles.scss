@@ -1,1 +1,175 @@
-/* You can add global styles to this file, and also import other style files */
+body, html{
+  margin: 0;
+  height: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+html{
+  scroll-behavior: smooth;
+
+}
+*{
+  -webkit-transition: all 1000ms ease-in-out;
+  -moz-transition: all 1000ms ease-in-out;
+  -ms-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  -webkit-appearance: none;
+  outline: none;
+}
+@font-face {
+  font-family: "couture";
+  src: url('assets/fonts/couture.otf');
+}@font-face {
+  font-family: "comfortaBold";
+  src: url('assets/fonts/ComfortaBold.ttf');
+}@font-face {
+  font-family: "comfortaLight";
+  src: url('assets/fonts/ComfortaLight.ttf');
+}@font-face {
+  font-family: "couture1";
+  src: url('assets/fonts/couture1.otf');
+}@font-face {
+  font-family: "interBlack";
+  src: url('assets/fonts/InterBlack.otf');
+}@font-face {
+  font-family: "interLight";
+  src: url('assets/fonts/InterLight.otf');
+}@font-face {
+  font-family: "interRegular";
+  src: url('assets/fonts/InterRegular.otf');
+}@font-face {
+  font-family: "mont";
+  src: url('assets/fonts/mont.otf');
+}@font-face {
+  font-family: "montLight";
+  src: url('assets/fonts/montLight.otf');
+}@font-face {
+  font-family: "rockstar";
+  src: url('assets/fonts/rockstar.otf');
+}
+h1, h2, h3{
+  font-family: comfortaLight, serif;
+  font-size: calc(1.425rem + 2.1vw) !important;
+  margin: 0;
+
+}
+p{
+  font-family: 'poppins';
+  font-weight: 200;
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.row{
+  display: flex;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+.center_justify{
+  justify-content: center;
+}
+.center_align{
+  align-items: center;
+}
+.space_b{
+  justify-content: space-between;
+}
+
+.icon_small{
+  width: 35px;
+}
+.icon_medium{
+  width: 80px;
+}
+.icon_big{
+  width: 150px;
+}
+.btn-full{
+  background-color: #eb561f;
+  color: white;
+  border: 1px solid #eb561f;
+  border-radius: 4px;
+  padding: 15px;
+  font-family: poppins;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  span{
+    margin-left: 10px;
+  }
+
+  font-size: 14px;
+}
+.btn-full:hover{
+  background-color: #ff3736;
+  border: 1px solid #ff3736;
+  transform: scale3d(1.1, 1.1, 1.1);
+
+
+  span{
+  }
+
+
+}
+
+.btn-line{
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: white;
+  font-family: 'poppins';
+  font-weight: 300;
+  cursor: pointer;
+  padding: 0;
+
+  border-bottom: 1px solid white;
+}
+.title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .title__section{
+    font-size: 16px;
+    margin: 0;
+    font-family: poppins;
+    font-weight: 300;
+    background-color: #f56563;
+    padding: 5px 10px;
+    width: auto;
+    box-sizing: border-box;
+    color: white;
+    display: inline-block;
+  }
+  .title__complement{
+    font-family: poppins;
+    font-weight: 600;
+    font-size: 35px;
+    margin: 10px 0 0;
+    text-align: center;
+  }
+  @media screen and (max-width: 970px) {
+    .title__complement{
+      font-size: calc(1.125rem + 2.1vw) !important;
+    }
+  }
+}
+.text-range{
+  text-align: justify;
+}
+.close{
+  width: 20px;
+  position: absolute;
+  margin-top: auto;
+  right: 25px;
+}
+
+// message
+.test{
+  color: red
+}
+.bold{
+  font-weight: bold;
+}

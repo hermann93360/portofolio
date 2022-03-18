@@ -1,0 +1,205 @@
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  ElementRef,
+  HostListener,
+  OnInit,
+  QueryList, ViewChild,
+  ViewChildren
+} from '@angular/core';
+import {fade} from "../../animations/animations";
+import {Observable} from "rxjs";
+import {interval} from "rxjs";
+import {Scroll} from "@angular/router";
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+
+@Component({
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss'],
+  animations: [
+    fade
+  ]
+})
+export class NavComponent implements OnInit, AfterViewInit {
+
+  public showBranding: boolean = false;
+  public posX: any;
+  public click: boolean = false;
+
+  public test: any;
+
+  @ViewChildren("moveEl")
+  public link!: QueryList<ElementRef>;
+
+  public positionX!: number;
+  public positionY!: number;
+
+  public positionEndingX!: number;
+  public positionEndingY!: number;
+
+  public left!: number;
+
+  public startClick!: any;
+  public startPosition!: any;
+  public delta!: any;
+
+  public number: number = 400
+
+  @ViewChild('pagination')
+  public pagination!: ElementRef;
+
+  @ViewChild('moveEl')
+  public element!: ElementRef;
+
+  @ViewChild('section')
+  public section!: ElementRef;
+
+  @HostListener('mousemove', ['$event'])
+  event(event: MouseEvent){
+    this.positionX = event.screenX;
+    this.positionY = event.clientY - this.link.get(0)?.nativeElement.offsetTop;
+
+  }
+
+  @HostListener('touchmove', ['$event'])
+  eventTouch(event: TouchEvent){
+    this.positionX = event.changedTouches[0].pageX
+    this.positionY = event.changedTouches[0].clientY - this.link.get(0)?.nativeElement.offsetTop;
+  }
+
+  constructor() {
+
+  }
+
+
+
+  ngOnInit(): void {
+      this.showBranding = true;
+  }
+
+
+  mousemove(events: any){
+    if(this.click){
+      this.delta =  this.startClick - this.positionX
+      console.log("delta" + this.delta)
+      this.startPosition += this.delta
+    }
+  }
+  touchmove(event: TouchEvent){
+    if(this.click){
+      this.delta = this.startClick - event.changedTouches[0].screenX;
+      this.startPosition += this.delta
+
+    }
+  }
+
+  mousedown(event: MouseEvent){
+    console.log("touhc" + this.positionX)
+
+    const posMouse = this.positionX - (this.pagination.nativeElement.offsetLeft
+      - (this.pagination.nativeElement.offsetWidth/2))
+
+    this.delta = 0;
+    this.click = true;
+    this.startClick = this.positionX
+
+    const reelPosition = ((posMouse * (this.element.nativeElement.offsetWidth))/(this.pagination.nativeElement.offsetWidth));
+
+    if(reelPosition < (this.element.nativeElement.offsetWidth) - (this.section.nativeElement.offsetWidth))
+      this.startPosition = -((posMouse * (this.element.nativeElement.offsetWidth))/(this.pagination.nativeElement.offsetWidth));
+    else
+      this.startPosition = -((this.element.nativeElement.offsetWidth) - (this.section.nativeElement.offsetWidth))
+
+    console.log("posverif " + this.startPosition)
+    console.log("posbar " + posMouse)
+    console.log("posElemtnwit " + this.element.nativeElement.offsetWidth)
+    this.link.get(0)?.nativeElement.classList.remove("transition")
+    this.link.get(0)?.nativeElement.classList.remove("transition-bezier")
+
+  }
+
+  touchdown(event: TouchEvent){
+    this.click = true;
+
+
+    this.delta = 0;
+    this.startClick = event.changedTouches[0].screenX
+    this.startPosition = this.link.get(0)?.nativeElement.offsetLeft;
+    this.link.get(0)?.nativeElement.classList.remove("transition")
+    this.link.get(0)?.nativeElement.classList.remove("transition-bezier")
+
+
+  }
+
+  up(){
+    this.click = false;
+
+    this.link.get(0)?.nativeElement.classList.add("transition")
+    this.startPosition = this.link.get(0)?.nativeElement.offsetLeft + this.delta * 3;
+    this.delta *= 2
+/*
+    if(this.link.get(0)?.nativeElement.offsetLeft + this.delta > 0 ){
+      this.link.get(0)?.nativeElement.classList.add("transition-bezier")
+      this.startPosition = 0;
+      this.delta = 0;
+    }
+ */
+  }
+  text(event: Event){
+    console.log(event)
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  get position() {
+
+
+      this.left = this.startPosition
+
+      return {
+        'left.px': this.left
+      };
+
+
+  }
+
+  yu(){
+    console.log("ouas")
+  }
+
+
+}
+
+<div class="home__header" @fade *ngIf="showBranding" >
+  <img class="home__header--branding icon_medium" src="assets/branding_white.png" alt="myLogo" />
+
+  <div class="home__navigation" >
+    <img class="home__header--nav-button icon_small" src="assets/nav.png" alt="nav" />
+  </div>
+</div>
+
+<div class="navigation__bg-dark fixed" >
+</div>
+<!-- (touchstart)="touchdown($event)" (touchend)="up()" (touchmove)="touchmove($event)" (mousedown)="mousedown($event)" (mouseup)="up()" (mousemove)="mousemove($event)" -->
+<div  class="navigation fixed" >
+  <div #moveEl [ngStyle]="position" class="navigation__link">
+    <h3 #section> Qui suis-je {{test}}</h3>
+    <h3> Mes experiences </h3>
+    <h3> Mes formations </h3>
+    <h3> Mes projets </h3>
+    <h3> Me contacter </h3>
+  </div>
+
+  <div #pagination class="navigation__pagination" (touchstart)="touchdown($event)" (touchend)="up()" (touchmove)="touchmove($event)" (mousedown)="mousedown($event)" (mousemove)="mousemove($event)" (mouseup)="up()">
+    <div class="navigation__pagination--item"></div>
+    <div class="navigation__pagination--item"></div>
+    <div class="navigation__pagination--item"></div>
+    <div class="navigation__pagination--item"></div>
+    <div class="navigation__pagination--item"></div>
+    <div class="navigation__pagination--item"></div>
+  </div>
+</div>
+

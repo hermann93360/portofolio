@@ -1,0 +1,86 @@
+<div #home_header class="home__header"  *ngIf="true" > <!-- @fade -->
+  <img class="home__header--branding icon_medium" src="assets/logo.png" alt="myLogo" />
+
+  <div class="home__navigation" >
+    <img #nav_btn (click)="showNavigation()" class="home__header--nav-button icon_small" src="assets/nav.png" alt="nav" />
+  </div>
+
+</div>
+
+<div #chatBoxBg class="navigation__bg-dark fixed" @fadeInNav *ngIf="showBackgroundNav">
+</div>
+<!-- (touchstart)="touchdown($event)" (touchend)="up()" (touchmove)="touchmove($event)" (mousedown)="mousedown($event)" (mouseup)="up()" (mousemove)="mousemove($event)" -->
+<div  #chatBox class="navigation fixed" @navShow *ngIf="showNav">
+  <div class="navigation__chat">
+    <div class="navigation__chat--header">
+      <img (click)="closeNav()" class="close" src="assets/icon-cross.png" alt="close"/>
+
+
+      <div class="navigation__chat--header-profil">
+        <img src="assets/humain.webp">
+      </div>
+      <div class=" navigation__chat--header-info">
+        <h3> KAMGUIN TANKEU Hermann</h3>
+        <p> Développeur Full-stack</p>
+        <p class="online">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="8"/>
+          </svg>
+          <span>En ligne</span>
+
+        </p>
+      </div>
+
+    </div>
+    <div #box class="navigation__chat--body" >
+    <div class="messages">
+      <div #wait class="content-msg wait">
+        <span class="point-1" ></span>
+        <span class="point-2" ></span>
+        <span class="point-3" ></span>
+      </div>
+
+      <div class="mrg-auto">
+
+      </div>
+<!--
+      <div class="content-msg nav-msg">
+        <p>Bonjour et bienvenue ! J'espère que tu vas bien ! Je me suis dit qu'à la place de te balancer à menu tout fade,
+        pourquoi pas te laisser la possibilité de me demander ce que tu veux voir directement...</p>
+        <p>Je t'avoue que je ne suis pas encore très intelligent mais ça viendra t'inquiète mais
+          pour le moment je te prie de bien vouloir me demander
+        ce que tu veux de manière simple avec des mots simple </p>
+        <p>Exemple :</p>
+        <p>Si tu veux avoir des informations concernant ma scolarité écris : ta scolarité ou tes formations</p>
+        <p>Si tu veux avoir des informations concernant mes expérience professionnelle écris : tes expériences </p>
+        <p>Si tu veux avoir des informations concernant mes projet écris : tes projets </p>
+        <p>Si tu veux m'envoyer un message écris : je veux te contacter </p>
+        <p> ENJOY </p>
+      </div>
+-->
+
+    </div>
+
+
+
+
+    </div>
+
+    <div class="navigation__chat--footer">
+      <input #answer type="text" placeholder="Ton message.." (keyup.enter)="sendMsg(answer.value)" />
+
+      <div (click)="sendMsg(answer.value)" class="send">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+        </svg>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="showBubleChat" (click)="showNavProgress()" class="wait-message">
+  <img src="assets/chat.png" alt="chat" />
+</div>
+
