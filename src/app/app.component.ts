@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
+    console.log("c'est bon")
     setInterval(() => {
       if(this.titlee === 'Developpeur')
         this.titlee = 'Full -stack'

@@ -115,7 +115,7 @@ export class NavComponent implements OnInit, AfterViewInit {
     this.showBubleChat = true;
   }
   showNavProgress(){
-    document.body.style.overflow = "true"
+    document.body.style.overflow = "hidden"
     this.chatBox.nativeElement.style.transform =  'scale(1, 1)'
     this.chatBoxBg.nativeElement.style.transform =  'scale(1, 1)'
     this.showBubleChat = false
