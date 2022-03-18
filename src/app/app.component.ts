@@ -21,6 +21,8 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   public showPage: boolean = false;
 
+  loading = true;
+
   @ViewChild('home')
   public home!: ElementRef
 
@@ -30,7 +32,6 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    console.log("c'est bon")
     setInterval(() => {
       if(this.titlee === 'Developpeur')
         this.titlee = 'Full -stack'
@@ -40,7 +41,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-      this.showAbout = true;
+    this.loading = false;
+
+    this.showAbout = true;
       setTimeout(() => {
         this.showPage = true;
       }, 500)
