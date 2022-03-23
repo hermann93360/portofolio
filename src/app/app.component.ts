@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   public showAbout: boolean = false;
 
   public showPage: boolean = false;
+  buildWebSiteInfo: boolean = true;
 
   loading = true;
 

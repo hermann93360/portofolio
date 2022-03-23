@@ -224,3 +224,22 @@
   justify-content: center;
   z-index: 5;
 }
+.build-website{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  p{
+    margin-bottom: 20Px;
+    text-align: center;
+  }
+}

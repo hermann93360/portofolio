@@ -1,5 +1,7 @@
 <router-outlet></router-outlet>
 
-<div class="test-loader" *ngIf="loading">
-  <p>c'est bon</p>
+<div class="build-website" *ngIf="buildWebSiteInfo">
+  <p> Mon site web est encore en cours de développement. Je te laisse tout de
+  même regarder ce qui à été fait. Je rajoute de nouvelles features très souvent</p>
+  <button class="btn-full" (click)="buildWebSiteInfo = false"> J'ai compris ! </button>
 </div>
